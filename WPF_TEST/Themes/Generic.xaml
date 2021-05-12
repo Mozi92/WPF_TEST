@@ -1,0 +1,141 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:WPF_TEST.CC">
+
+
+    <Style TargetType="{x:Type local:C_Btn}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate  x:Name="Mybtn"  TargetType="{x:Type local:C_Btn}">
+                    <Grid>
+                        <Border x:Name="border" Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <StackPanel Width="170" Height="100">
+                                <Image x:Name="icon" Source="{TemplateBinding Src}" Width="32" Height="32"></Image>
+                                <TextBlock x:Name="txt" Text="{TemplateBinding Value}"></TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Resources>
+                        <Style x:Key="FButton_Transparency" TargetType="{x:Type local:C_Btn}">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="MouseOverBackground" Value="Transparent" />
+                            <Setter Property="PressedBackground" Value="Transparent" />
+                            <Setter Property="Foreground" Value="{StaticResource TextForeground}" />
+                            <Setter Property="MouseOverForeground" Value="{StaticResource MouseOverForeground}" />
+                            <Setter Property="PressedForeground" Value="{StaticResource PressedForeground}" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="Height" Value="Auto" />
+                            <Setter Property="Width" Value="Auto" />
+                            <Setter Property="CornerRadius" Value="0" />
+                            <Setter Property="FontSize" Value="13" />
+                            <Setter Property="FIconSize" Value="20" />
+                            <Setter Property="Padding" Value="3,1,3,1" />
+                            <Setter Property="Content" Value="{x:Null}" />
+                            <Setter Property="FIconMargin" Value="0,0,2,0" />
+                            <Setter Property="AllowsAnimation" Value="False" />
+                            <Setter Property="Cursor" Value="Hand" />
+                        </Style>
+                    </ControlTemplate.Resources>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity"  Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, 
+                                Path=MouseOverBackground}" TargetName="border" />
+                            <Setter Property="Opacity" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, 
+                                Path=MouseOverForeground}" TargetName="icon"/>
+                            <Setter Property="Opacity" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, 
+                                Path=MouseOverForeground}" TargetName="txt"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="true"></Condition>
+                                <Condition Property="AllowsAnimation" Value="true"></Condition>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="transIcon" Storyboard.TargetProperty="Angle" To="180" Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="transIcon" Storyboard.TargetProperty="Angle" To="0" Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Opacity" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, 
+                                Path=PressedBackground}" TargetName="border" />
+                            <Setter Property="Opacity" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, 
+                                Path=PressedForeground}" TargetName="icon"/>
+                            <Setter Property="Opacity" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, 
+                                Path=PressedForeground}" TargetName="txt"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="0.5" TargetName="border"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:C_Nav}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:C_Nav}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Shape" TargetType="{x:Type local:ShapeBtn}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ShapeBtn}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Circular" BasedOn="{StaticResource Shape}" TargetType="{x:Type local:CircularBtn}">
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Background" Value="#ffffff"/>
+        <Setter Property="BorderBrush" Value="#b4b4b4"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:CircularBtn}">
+                    <Grid>
+                        <Ellipse x:Name="ellipse" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"
+								 Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" 
+								 Fill="{TemplateBinding Background}"
+								 VerticalAlignment="Center"  HorizontalAlignment="Center" IsHitTestVisible="True">
+                        </Ellipse>
+                        <Path Name="PART_ButtonPath" IsHitTestVisible="True" Fill="{TemplateBinding BorderBrush}" Data="M512 801.6896L5.12 282.0096l58.1632-59.5968L512 682.3936l448.7168-460.0832 58.1632 59.5968-506.88 519.7824z" Width="10" Height="10" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Uniform"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="#2561a9"/>
+                            <Setter Property="Background" Value="#ccdfeb"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
