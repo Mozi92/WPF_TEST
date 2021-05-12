@@ -5,14 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_TEST.UC"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="170" BorderBrush="SkyBlue" BorderThickness="0,0,0,1">
+             d:DesignHeight="100" d:DesignWidth="170" BorderBrush="SkyBlue" BorderThickness="0,0,0,1" Mouse.MouseUp="UserControl_MouseUp">
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="18"></Setter>
             <Setter Property="Foreground" Value="#CED0CF"></Setter>
         </Style>
     </UserControl.Resources>
-    <Grid>
+    <Grid x:Name="Nav_Item">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>

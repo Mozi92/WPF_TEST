@@ -67,13 +67,12 @@
     <Compile Include="CC\C_Btn.cs" />
     <Compile Include="CC\C_Nav.cs" />
     <Compile Include="CC\ShapeBtn.cs" />
+    <Compile Include="UC\U_Btn.xaml.cs">
+      <DependentUpon>U_Btn.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC\U_Nav.xaml.cs">
       <DependentUpon>U_Nav.xaml</DependentUpon>
     </Compile>
-    <Page Include="DictionaryImg.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -94,13 +93,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="UC\U_Btn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UC\U_Nav.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyData.cs" />
     <Compile Include="Page1.xaml.cs">
       <DependentUpon>Page1.xaml</DependentUpon>
     </Compile>
@@ -142,6 +144,12 @@
     <Resource Include="Resource\工序管理.png" />
     <Resource Include="Resource\库存调整.png" />
     <Resource Include="Resource\标签打印.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ViewModel\ViewModel.csproj">
+      <Project>{21a344fb-8509-4afb-968f-ffea73b9b18b}</Project>
+      <Name>ViewModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

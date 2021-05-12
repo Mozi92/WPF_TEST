@@ -27,7 +27,7 @@ namespace WPF_TEST.UC
         }
 
         /// <summary>
-        /// 添加文本属性
+        /// 注册文本属性
         /// </summary>
         public static readonly DependencyProperty TextProperty =
                    DependencyProperty.Register("Text", typeof(string),
@@ -63,6 +63,31 @@ namespace WPF_TEST.UC
                 source.icon.Source = GetSource((string)args.NewValue);
         }
 
+        /// <summary>
+        /// 注册背景属性
+        /// </summary>
+        public static readonly DependencyProperty BGProperty =
+                   DependencyProperty.Register("BG", typeof(string),
+                   typeof(U_Nav),
+                   new PropertyMetadata("Grid", new PropertyChangedCallback(OnBGChanged)));
+        public string BG
+        {
+            get { return (string)GetValue(BGProperty); }
+
+            set { SetValue(BGProperty, value); }
+        }
+
+        static void OnBGChanged(object sender, DependencyPropertyChangedEventArgs args)
+        {
+            U_Nav source = (U_Nav)sender;
+            source.Nav_Item.Background = (Brush)args.NewValue;
+        }
+
+        /// <summary>
+        /// 获取图片数据
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <returns></returns>
         static BitmapImage GetSource(string uri)
         {
             string path = Directory.GetCurrentDirectory();
@@ -72,30 +97,15 @@ namespace WPF_TEST.UC
             return new BitmapImage(new Uri(sss, UriKind.Absolute));
         }
 
-
-
-        public static readonly RoutedEvent MyButtonClickEvent =
-            EventManager.RegisterRoutedEvent("MyButtonClick", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<object>), typeof(U_Nav));
-
-        public event RoutedPropertyChangedEventHandler<object> MyButtonClick
+        /// <summary>
+        /// 点击控件导航
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UserControl_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            add
-            {
-                this.AddHandler(MyButtonClickEvent, value);
-            }
-
-            remove
-            {
-                this.RemoveHandler(MyButtonClickEvent, value);
-            }
-        }
-
-        public void OnMyButtonClick(object oldValue, object newValue)
-        {
-            RoutedPropertyChangedEventArgs<object> arg =
-                new RoutedPropertyChangedEventArgs<object>(oldValue, newValue, MyButtonClickEvent);
-
-            this.RaiseEvent(arg);
+            MainWindow mf = (MainWindow)Application.Current.MainWindow;
+            mf.GoForm(this.tb.Text);
         }
     }
 }

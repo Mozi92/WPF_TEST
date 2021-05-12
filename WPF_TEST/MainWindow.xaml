@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:UC="clr-namespace:WPF_TEST.UC" xmlns:cc="clr-namespace:WPF_TEST.CC" x:Class="WPF_TEST.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920">
+        Title="MainWindow" Height="900" Width="1680" Loaded="Window_Loaded">
     <Window.Resources>
 
         <Style TargetType="{x:Type Button}">
@@ -38,21 +38,11 @@
                 <TranslateTransform/>
             </TransformGroup>
         </Grid.RenderTransform>
-        <StackPanel x:Name="NavContent" HorizontalAlignment="Left" VerticalAlignment="Top" Width="170" UC:U_Nav.MyButtonClick="NavContent_MyButtonClick">
+        <StackPanel x:Name="NavContent" HorizontalAlignment="Left" VerticalAlignment="Top" Width="170">
             <UC:U_Nav x:Name="Navbar" Text="出库" Src="/Resource/出库.png" HorizontalAlignment="Left" Height="100"  VerticalAlignment="Top" Width="170"/>
             <UC:U_Nav x:Name="Navbar1" Text="入库" Src="/Resource/工序管理.png" HorizontalAlignment="Left" Height="100"  VerticalAlignment="Top" Width="170"/>
             <UC:U_Nav x:Name="Navbar2" Text="出纳" Src="/Resource/库存调整.png" HorizontalAlignment="Left" Height="100"  VerticalAlignment="Top" Width="170"/>
         </StackPanel>
-        <DockPanel HorizontalAlignment="Left" Height="843" LastChildFill="False" Margin="493,121,-1104,0" VerticalAlignment="Top" Width="711">
-            <cc:C_Btn x:Name="result" Value="出纳"></cc:C_Btn>
-            <cc:CircularBtn></cc:CircularBtn>
-            <Border Height="50" Width="300" BorderBrush="Gray" BorderThickness="1">
-                <StackPanel Background="LightGray" Orientation="Horizontal" Button.Click="CommonClickHandler">
-                    <Button Name="YesButton" Width="Auto" >Yes</Button>
-                    <Button Name="NoButton" Width="Auto" >No</Button>
-                    <Button Name="CancelButton" Width="Auto" >Cancel</Button>
-                </StackPanel>
-            </Border>
-        </DockPanel>
+        <WrapPanel x:Name="OnlineUser" HorizontalAlignment="Left" Height="Auto" Margin="370,200,-1337,0" VerticalAlignment="Top" Width="1137"></WrapPanel>
     </Grid>
 </Window>
