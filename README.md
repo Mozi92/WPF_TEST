@@ -1,2 +1,2 @@
 # WPF_TEST
-学习联系WPF
+学习练习WPF
